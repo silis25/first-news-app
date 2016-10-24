@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link rel="stylesheet" href="/static/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+    </head>
+    <body>
+        <nav>
+            <a href="http://www.letthemstare.co.il/">
+                <img src="/static/logo.png">
+            </a>
+        </nav>
+        <header>
+            <h1>OPTICAL FIBER FAULTS ON MAP</h1>
+        </header>
+        <div id="map" style="width:100%; height:600px;"></div>
+        <h1></h1>
+        <table border=1 cellpadding=7>
+            <tr>
+                <th>Fiber Fault Location (Latitude/Longitude)</th>
+                <th>Date</th>
+                <th>Type of Fault</th>
+                <th>Measurement Address</th>
+            </tr>
+        
+            <tr>
+                <td><a href="1/">32.794046,34.989571</a></td>
+                <td>30/04/2016</td>
+                <td>Bad Connector</td>
+                <td>Haifa</td>
+            </tr>
+        
+            <tr>
+                <td><a href="2/">31.768319,35.21371</a></td>
+                <td>01/05/2016</td>
+                <td>Excessive Fiber Bend</td>
+                <td>Jerusalem</td>
+            </tr>
+        
+            <tr>
+                <td><a href="3/">32.015833,34.787384</a></td>
+                <td>23/05/2016</td>
+                <td>Bad Splice</td>
+                <td>Holon</td>
+            </tr>
+        
+            <tr>
+                <td><a href="4/">32.09073,34.77573</a></td>
+                <td>11/09/2016</td>
+                <td>Planned Activity</td>
+                <td>Tel Aviv</td>
+            </tr>
+        
+            <tr>
+                <td><a href="5/">32.068424,34.824785</a></td>
+                <td>26/05/2016</td>
+                <td>Unplanned Activity</td>
+                <td>Ramat Gun</td>
+            </tr>
+        
+            <tr>
+                <td><a href="6/">32.321458,34.853196</a></td>
+                <td>24/10/2016</td>
+                <td>Faulty Sfp</td>
+                <td>Netanya</td>
+            </tr>
+        
+        </table>
+        <script type="text/javascript">
+            var map = L.map('map').setView([32.085300, 34.781768], 9);
+            var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+            });
+            map.addLayer(osmLayer);
+            var data = {
+              "type": "FeatureCollection",
+              "features": [
+                
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "full_location": "32.794046,34.989571",
+                    "id": "1"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [34.989571, 32.794046]
+                  }
+                },
+                
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "full_location": "31.768319,35.21371",
+                    "id": "2"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [35.21371, 31.768319]
+                  }
+                },
+                
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "full_location": "32.015833,34.787384",
+                    "id": "3"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [34.787384, 32.015833]
+                  }
+                },
+                
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "full_location": "32.09073,34.77573",
+                    "id": "4"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [34.77573, 32.09073]
+                  }
+                },
+                
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "full_location": "32.068424,34.824785",
+                    "id": "5"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [34.824785, 32.068424]
+                  }
+                },
+                
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "full_location": "32.321458,34.853196",
+                    "id": "6"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [34.853196, 32.321458]
+                  }
+                }
+                
+              ]
+            };
+            var dataLayer = L.geoJson(data, {
+                onEachFeature: function(feature, layer) {
+                    layer.bindPopup(
+                        '<a href="' + feature.properties.id + '/">' +
+                            feature.properties.full_location +
+                        '</a>'
+                    );
+                }
+            });
+            map.addLayer(dataLayer);
+        </script>
+    </body>
+</html>
