@@ -24,7 +24,6 @@ h1 {
     font-size: 44px;
     line-height: 50px;
     font-weight: bold;
-    font-style: italic;
     text-shadow: 0.3px 0.3px 0px gray;
     letter-spacing: .01em;
 }
@@ -38,7 +37,7 @@ h1 {
 }
 table {
     border-collapse:collapse;
-    margin: 0 0 20px 0;
+    margin: 20px 0 20px 0;
     border-width: 0;
     width: 100%;
     font-size: 14px;
@@ -53,6 +52,7 @@ tr:hover {
     background-color: #f3f3f3;
 }
 p {
+	margin: 20px 0 20px 0;
     line-height:140%;
 }
 a {
